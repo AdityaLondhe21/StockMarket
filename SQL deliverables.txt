@@ -16,3 +16,11 @@ CREATE TABLE users (
     date_of_birth DATE NOT NULL,
     balance DECIMAL(10,2)
 );
+
+CREATE TABLE watchlist (
+    id SERIAL PRIMARY KEY,        
+    user_id INT NOT NULL,           
+    stock_id INT NOT NULL,       
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (stock_id) REFERENCES stock(stock_id) ON DELETE CASCADE
+);

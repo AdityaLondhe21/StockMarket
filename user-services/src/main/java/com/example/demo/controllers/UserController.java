@@ -7,6 +7,7 @@ import com.example.demo.models.User;
 import com.example.demo.services.UserServices;
 
 @RestController
+@CrossOrigin(origins ="*")
 @RequestMapping("/user")
 public class UserController {
 

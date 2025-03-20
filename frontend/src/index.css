@@ -1,0 +1,519 @@
+:root {
+  --primary-teal: #26A69A;
+  --secondary-yellow: #FFEB3B;
+  --light-grey-bg: #FAFAFA;
+  --dark-grey-content-bg: #EEEEEE;
+  --black-text: #212121;
+  --medium-grey-text: #757575;
+  --accent-soft-gold: #FFD700;
+  --text-dark: #333333;
+  --text-light: #777777;
+  --background-light: #F5F5F5;
+  --white: #FFFFFF;
+}
+
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  color: var(--black-text);
+  background-color: var(--light-grey-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: var(--primary-teal);
+  color: white;
+  text-align: center;
+  padding: 30px 0;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin-bottom: 5px;
+  font-size: 2.3em;
+}
+
+.header h2 {
+  font-size: 1.1em;
+  font-weight: normal;
+  color: var(--light-grey-bg);
+}
+
+.middle-section {
+  display: flex;
+  width: 90%;
+  background-color: var(--white);
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  flex-grow: 1;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+.content-section {
+  padding: 20px;
+}
+
+.content-section h2 {
+  color: var(--primary-teal);
+  margin-top: 0;
+  border-bottom: 2px solid var(--primary-teal);
+  padding-bottom: 5px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--primary-teal);
+  color: white;
+  font-size: 0.9em;
+  margin-top: 20px;
+}
+#services.content-section ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+#services.content-section ul li {
+  background-color: var(--background-light);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-bottom: none;
+}
+
+#services.content-section ul li strong {
+  color: var(--primary-teal);
+}
+
+#netbanking.content-section, #signup.content-section {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: var(--background-light);
+}
+#netbanking .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#netbanking .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#netbanking label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+#netbanking input[type="text"],
+#netbanking input[type="password"],
+#signup .signup-input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1em;
+  color: var(--text-dark);
+}
+
+#netbanking input[type="text"]:focus,
+#netbanking input[type="password"]:focus,
+#signup .signup-input:focus {
+  outline: none;
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 2px rgba(38, 166, 154, 0.2);
+}
+
+
+#netbanking .login-button {
+  padding: 14px 20px;
+  background-color: var(--primary-teal);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+#netbanking .login-button:hover {
+  background-color: #1E847A;
+}
+
+#netbanking .signup-link, #signup .login-back-link {
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--text-light);
+}
+
+#netbanking .signup-link a, #signup .login-back-link a {
+  color: var(--primary-teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#netbanking .signup-link a:hover {
+  text-decoration: underline;
+}
+
+#signup.content-section p {
+  margin-bottom: 20px;
+}
+
+#signup .back-to-login {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--secondary-light-grey);
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+#signup .back-to-login:hover {
+  background-color: #d0d5d8;
+}
+
+#signup h2 {
+  color: var(--primary-teal);
+  margin-bottom: 2px;
+}
+
+#signup .signup-form { 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#signup .signup-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#signup .signup-label { 
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-light); 
+}
+
+#signup .signup-button {
+  padding: 14px 20px;
+  background-color: var(--primary-teal); 
+  color: var(--white); 
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500; 
+}
+
+#signup .signup-button:hover { 
+  background-color: #1E847A; 
+}
+
+#signup .login-back-link a:hover {
+  text-decoration: underline; 
+  color: #1E847A; 
+}
+
+/* services */
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--light-grey-bg);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  font-size: 1em;
+  transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: var(--background-light);
+  color: #343a40;
+}
+
+.tab-button.active {
+  background-color: white;
+  color: var(--primary-teal);
+  font-weight: bold;
+  border-bottom-color: var(--primary-teal);
+}
+
+.calculator-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+#depositCalculatorContainer {
+  display: none;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+  border-color: #007bff; 
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.form-group input[type="text"]:readonly,
+.form-group input[type="number"]:readonly {
+  background-color: #eee;
+  cursor: not-allowed;
+  border: 1px solid #ddd;
+  color: #777;
+}
+
+.form-group .range-info {
+  font-size: 0.9em;
+  color: #777;
+  display: block;
+  margin-top: 5px;
+}
+
+.calculator-container button[type="submit"] {
+  background-color: var(--primary-teal);;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.calculator-container button[type="submit"]:hover {
+  background-color: var(--secondary-yellow);
+}
+
+/* services new */
+/* Services Page Container */
+.services-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Text */
+.services-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.services-container p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Service Cards */
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Icons */
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Card Titles */
+.service-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Card Description */
+.service-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+#forgot-password .password-display {
+  background-color: var(--secondary-yellow); /* Example background for password display */
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+  font-weight: bold;
+  text-align: center;
+}
+
+#forgot-password .security-warning {
+  color: red; /* Make the warning text red */
+  font-size: 0.9em;
+  margin-top: 20px;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #ffebee; /* Light red background for warning */
+}
+
+a {
+  color: var(--primary-teal);
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Stock Table Styling */
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.stock-table th, .stock-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.stock-table th {
+  background-color: var(--primary-teal);
+  color: white;
+}
+
+.stock-table tbody tr:nth-child(even) {
+  background-color: var(--background-light);
+}
+
+/* Stock Form Styling (reusing some netbanking form styles, adjust as needed) */
+.stock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px; /* Adjust width as needed */
+}
+
+.stock-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.stock-form label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+.stock-form input[type="text"],
+.stock-form input[type="number"] {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1em;
+  color: var(--text-dark);
+}
+
+.stock-form input[type="text"]:focus,
+.stock-form input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 2px rgba(38, 166, 154, 0.2);
+}
+
+.action-button { /* Style for buttons in admin components */
+  padding: 14px 20px;
+  background-color: var(--primary-teal);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  margin-top: 10px; /* Add some margin above buttons */
+}
+
+.action-button:hover {
+  background-color: #1E847A;
+}
+
+/* Message and Error Styles (adjust colors as desired) */
+.content-section .message {
+  color: darkgreen;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.content-section .error {
+  color: darkred;
+  margin-bottom: 15px;
+  text-align: center;
+}

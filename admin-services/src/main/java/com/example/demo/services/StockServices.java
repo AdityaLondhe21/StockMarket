@@ -39,6 +39,7 @@ public class StockServices {
     //update stocks
     public Stock updateStock(int id, Stock updatedStock) {
         return repo.findById(id).map(stock -> {
+        	stock.setName(updatedStock.getName());
             stock.setQuantity(updatedStock.getQuantity());
             stock.setMin_price(updatedStock.getMin_price());
             stock.setMax_price(updatedStock.getMax_price());

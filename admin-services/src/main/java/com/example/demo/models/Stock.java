@@ -12,11 +12,18 @@ public class Stock {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int stock_id;
+	private String name;
 	private int quantity;
 	private double min_price;
 	private double max_price;
 	private double current_price;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public double getCurrent_price() {
 		return current_price;
 	}

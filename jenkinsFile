@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+ 
+    environment {
+        DOCKER_HUB_USER = "mhanush"
+        BACKEND_IMAGE = "stockmarket-backend"
+        FRONTEND_IMAGE = "stockmarket-frontend"
+    }
+ 
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/adithiyalonde/StockMarket.git', branch: 'main'
+            }
+        }
+ 
+        stage('Build & Test Backend') {
+            steps {
+                dir('backend') {
+                    bat 'mvn clean package'
+                }
+            }
+        }
+ 
+        stage('Build & Test Frontend') {
+            steps {
+                dir('frontend') {
+                    bat 'npm install'
+                    bat 'npm run build'
+                }
+            }
+        }
+ 
+        stage('Build Docker Images') {
+            steps {
+                bat "docker build -t $DOCKER_HUB_USER/$BACKEND_IMAGE ./backend"
+                bat "docker build -t $DOCKER_HUB_USER/$FRONTEND_IMAGE ./frontend"
+            }
+        }
+ 
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'Mhanush@21', variable: 'DOCKER_HUB_PASSWORD')]) {
+                    bat "echo %DOCKER_HUB_PASSWORD% | docker login -u $DOCKER_HUB_USER --password-stdin"
+                }
+                bat "docker push $DOCKER_HUB_USER/$BACKEND_IMAGE"
+                bat "docker push $DOCKER_HUB_USER/$FRONTEND_IMAGE"
+            }
+        }
+ 
+        stage('Deploy Containers') {
+            steps {
+                bat "docker stop stockmarket-backend || true && docker rm stockmarket-backend || true"
+                bat "docker stop stockmarket-frontend || true && docker rm stockmarket-frontend || true"
+                bat "docker run -d -p 8080:8080 --name stockmarket-backend $DOCKER_HUB_USER/$BACKEND_IMAGE"
+                bat "docker run -d -p 3000:3000 --name stockmarket-frontend $DOCKER_HUB_USER/$FRONTEND_IMAGE"
+            }
+        }
+    }
+ 
+    post {
+        success { echo "Deployment Successful! 🚀" }
+        failure { echo "Build Failed! ❌" }
+    }
+}

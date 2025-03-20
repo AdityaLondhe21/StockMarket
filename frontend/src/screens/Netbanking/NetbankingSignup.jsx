@@ -17,7 +17,7 @@ function NetbankingSignup() {
         user_id: parseInt(custID), 
         user_name: name,
         password: password,
-        date_of_birth: dateOfBirth // Send Date of Birth
+        date_of_birth: dateOfBirth 
       });
 
       console.log(response);
@@ -26,10 +26,10 @@ function NetbankingSignup() {
         setCustID('');
         setPassword('');
         setName('');
-        setDateOfBirth(''); // Clear Date of Birth field
-        navigate('/netbanking/login'); // Redirect to login page
+        setDateOfBirth('');
+        navigate('/netbanking/login'); 
       } else {
-        alert(response.data); // Show error message from backend (e.g., "ID already exists")
+        alert(response.data); 
       }
 
     } catch (error) {
@@ -41,7 +41,7 @@ function NetbankingSignup() {
   return (
     <div className="main-content">
       <div className="content-section" id="signup">
-        <h2>Create Your NetBanking Account</h2>
+        <h2>Create Your Stocks Account</h2>
         <p>Experience the convenience of managing your finances online.</p>
         <form className="signup-form" onSubmit={handleSubmit}>
           <div className="signup-form-group">
@@ -53,7 +53,7 @@ function NetbankingSignup() {
               className="signup-input"
               placeholder="Enter Your Name"
               required
-              pattern="[a-zA-Z\\s]+" // Allow spaces in name
+              pattern="[a-zA-Z\\s]+"
               value={name}
               onChange={(e) => setName(e.target.value)}
               title="Customer Name should contain only alphabets and spaces"
@@ -68,7 +68,7 @@ function NetbankingSignup() {
               className="signup-input"
               placeholder="Enter Your Customer ID"
               required
-              pattern="[0-9]+" // Customer ID should be numeric based on backend model
+              pattern="[0-9]+" 
               value={custID}
               onChange={(e) => setCustID(e.target.value)}
               title="Customer ID must be numeric"
@@ -77,7 +77,7 @@ function NetbankingSignup() {
           <div className="signup-form-group">
             <label htmlFor="dob-signup" className="signup-label">Date of Birth</label>
             <input
-              type="date" // Use type="date" for Date of Birth input
+              type="date" 
               id="dob-signup"
               name="dob-signup"
               className="signup-input"

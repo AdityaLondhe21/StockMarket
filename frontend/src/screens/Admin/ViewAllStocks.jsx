@@ -20,7 +20,7 @@ function ViewAllStocks() {
     };
 
     fetchStocks();
-  }, []);
+  });
 
   if (loading) {
     return <p>Loading stocks...</p>;

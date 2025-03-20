@@ -173,7 +173,6 @@ INDEX VERSION 1.134+C:\Users\Wissen\Desktop\Assessment\.metadata\.plugins\org.ec
 1938545403.index
 591858991.index
 4201828840.index
-4106435274.index
 1744915318.index
 1539479476.index
 4147258311.index

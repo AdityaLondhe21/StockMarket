@@ -36,4 +36,20 @@ public class UserController {
     public String forgotPassword(@RequestParam int id, @RequestParam String dob) {
     	return userService.forgotPassword(id, dob);
     }
+    
+    @GetMapping("/balance/{id}")
+    public double getUserBalance(@PathVariable int id) {
+        double balance = userService.getBalance(id);
+        return balance;
+    }
+    
+    @PutMapping("/updateBalance/{id}")
+    public String updateUserBalance(@PathVariable int id, @RequestParam double balance) {
+        boolean updated = userService.updateBalance(id, balance);
+        if (!updated) {
+            return "User not found or balance update failed";
+        }
+        return "Balance updated successfully!";
+    }
+    
 }

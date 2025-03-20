@@ -8,12 +8,10 @@ import About from './screens/About'
 import NetbankingLogin from './screens/Netbanking/NetbankingLogin'
 import NetbankingSignup from './screens/Netbanking/NetbankingSignup'
 import Services from './screens/Services/Services'
-import Balance from './screens/Services/Balance'
 import Contact from './screens/Contact'
 import { Provider } from 'react-redux';
 import store from './reduxContainer/Store';
 import Transfer from './screens/Services/Transfer'
-import MiniStatement from './screens/Services/MiniStatement'
 import ForgotPassword from './screens/Netbanking/ForgotPassword'
 import ChangePassword from './screens/Netbanking/ChangePassword'
 import AdminDashboard from './screens/Admin/AdminDashboard'
@@ -39,9 +37,7 @@ function App() {
               }
             />
             <Route path="/services" element={<Services/>} />
-            <Route path="/services/balance" element={<Balance />} />
             <Route path="/services/transfer" element={<Transfer />} />
-            <Route path="/services/mini-statement" element={<MiniStatement />} />
             <Route path="/contact" element={<Contact/>} />
             <Route path="/netbanking/signup" element={<NetbankingSignup/>} />
           </Routes>

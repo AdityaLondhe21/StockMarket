@@ -12,7 +12,6 @@
   --white: #FFFFFF;
 }
 
-
 body {
   font-family: sans-serif;
   margin: 0;
@@ -339,8 +338,6 @@ body {
   background-color: var(--secondary-yellow);
 }
 
-/* services new */
-/* Services Page Container */
 .services-container {
   text-align: center;
   padding: 20px;
@@ -359,39 +356,13 @@ body {
   margin-bottom: 20px;
 }
 
-/* Grid Layout */
-.services-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
 
-/* Service Cards */
-.service-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Icons */
 .icon {
   font-size: 40px;
   margin-bottom: 10px;
 }
 
-/* Card Titles */
 .service-card h3 {
   font-size: 18px;
   margin-bottom: 8px;
@@ -405,7 +376,7 @@ body {
 
 
 #forgot-password .password-display {
-  background-color: var(--secondary-yellow); /* Example background for password display */
+  background-color: var(--secondary-yellow); 
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 15px;
@@ -415,13 +386,13 @@ body {
 }
 
 #forgot-password .security-warning {
-  color: red; /* Make the warning text red */
+  color: red; 
   font-size: 0.9em;
   margin-top: 20px;
   border: 1px solid red;
   padding: 10px;
   border-radius: 6px;
-  background-color: #ffebee; /* Light red background for warning */
+  background-color: #ffebee;
 }
 
 a {
@@ -453,12 +424,11 @@ a {
   background-color: var(--background-light);
 }
 
-/* Stock Form Styling (reusing some netbanking form styles, adjust as needed) */
 .stock-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 500px; /* Adjust width as needed */
+  max-width: 500px;
 }
 
 .stock-form .form-group {
@@ -488,7 +458,7 @@ a {
   box-shadow: 0 0 0 2px rgba(38, 166, 154, 0.2);
 }
 
-.action-button { /* Style for buttons in admin components */
+.action-button {
   padding: 14px 20px;
   background-color: var(--primary-teal);
   color: var(--white);
@@ -498,14 +468,13 @@ a {
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;
-  margin-top: 10px; /* Add some margin above buttons */
+  margin-top: 10px;
 }
 
 .action-button:hover {
   background-color: #1E847A;
 }
 
-/* Message and Error Styles (adjust colors as desired) */
 .content-section .message {
   color: darkgreen;
   margin-bottom: 15px;
@@ -517,3 +486,66 @@ a {
   margin-bottom: 15px;
   text-align: center;
 }
+
+.stock-list-container.service-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.stock-list-container h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.stock-list-container .table-responsive {
+  overflow-x: auto;
+}
+
+.stock-list-container .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.stock-list-container .table th,
+.stock-list-container .table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.stock-list-container .table th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+}
+
+.stock-list-container .table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.stock-list-container .table button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.stock-list-container .table button:hover {
+  background-color: #0056b3;
+}
+
+.stock-list-container .table button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+

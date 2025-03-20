@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginSucess, setAdminStatus } from '../../reduxContainer/AuthAction';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Netbanking({ setAdminLogin }) { 
+function Netbanking() { 
   const [custID, setCustID] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -51,31 +51,12 @@ function Netbanking({ setAdminLogin }) {
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Customer ID</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter Customer ID"
-              required
-              pattern="[a-zA-Z0-9]+"
-              value={custID}
-              onChange={(e) => setCustID(e.target.value)}
-              title="Customer ID must be alphanumeric"
+            <input type="text" id="username" name="username" placeholder="Enter Customer ID" required pattern="[a-zA-Z0-9]+" value={custID} onChange={(e) => setCustID(e.target.value)} title="Customer ID must be alphanumeric"
             />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter Password"
-              required
-              minLength="4"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              title="Password must be at least 6 characters long"
-            />
+            <input type="password" id="password" name="password" placeholder="Enter Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button type="submit" className="login-button">Login</button>
           <div className="signup-link">

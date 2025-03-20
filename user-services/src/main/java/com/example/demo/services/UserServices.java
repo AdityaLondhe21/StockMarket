@@ -60,4 +60,20 @@ public class UserServices {
         }
         return "Your password: " + userOptional.get().getPassword();
     }
+    
+    public double getBalance(int id) {
+        Optional<User> optionalUser = repo.findById(id);
+        return optionalUser.map(User::getBalance).orElse(null);
+    }
+
+    public boolean updateBalance(int id, double balance) {
+        Optional<User> optionalUser = repo.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setBalance(balance);
+            repo.save(user);
+            return true;
+        }
+        return false;
+    }
 }

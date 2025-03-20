@@ -1,0 +1,5 @@
+package com.example.demo.trading.service;
+
+public class TradingService {
+
+}

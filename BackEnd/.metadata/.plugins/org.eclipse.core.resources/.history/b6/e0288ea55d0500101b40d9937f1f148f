@@ -1,0 +1,15 @@
+package com.example.demo.trading.service;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.trading.entity.Transaction;
+import com.example.demo.trading.repository.TransactionRepository;
+
+@Service
+public class TradingService {
+
+}

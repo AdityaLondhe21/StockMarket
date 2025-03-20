@@ -1,0 +1,7 @@
+package com.example.demo.trading.dto;
+
+public class SellStockRequest {
+    private Long userId;
+    private Long stockId;
+    private int quantity;
+}

@@ -1,0 +1,64 @@
+package com.example.demo.trading.service;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.trading.entity.Transaction;
+import com.example.demo.trading.repository.repository.TransactionRepository;
+
+@Service
+public class TradingService {
+    
+    @Autowired
+    private TransactionRepository transactionRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
+
+    public String buyStock(Long userId, Long stockId, int quantity) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        Stock stock = stockRepository.findById(stockId).orElseThrow(() -> new RuntimeException("Stock not found"));
+        BigDecimal stockPrice = stock.getCurrentPrice();
+        BigDecimal totalCost = stockPrice.multiply(BigDecimal.valueOf(quantity));
+        if (user.getBalance().compareTo(totalCost) < 0) {
+            return "Insufficient balance";
+        }
+        user.setBalance(user.getBalance().subtract(totalCost));
+        userRepository.save(user);
+        Transaction transaction = new Transaction();
+        transaction.setType("BUY");
+        transaction.setUser(user);
+        transaction.setStock(stock);
+        transaction.setNoOfShares(quantity);
+        transaction.setAmount(totalCost);
+        transaction.setTimestamp(new Date());
+        transactionRepository.save(transaction);
+
+        return "Stock purchased successfully!";
+    }
+
+    public String sellStock(Long userId, Long stockId, int quantity) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        Stock stock = stockRepository.findById(stockId).orElseThrow(() -> new RuntimeException("Stock not found"));
+        BigDecimal stockPrice = stock.getCurrentPrice();
+        BigDecimal totalRevenue = stockPrice.multiply(BigDecimal.valueOf(quantity));
+        user.setBalance(user.getBalance().add(totalRevenue));
+        userRepository.save(user);
+        Transaction transaction = new Transaction();
+        transaction.setType("SELL");
+        transaction.setUser(user);
+        transaction.setStock(stock);
+        transaction.setNoOfShares(quantity);
+        transaction.setAmount(totalRevenue);
+        transaction.setTimestamp(new Date());
+        transactionRepository.save(transaction);
+
+        return "Stock sold successfully!";
+    }
+}

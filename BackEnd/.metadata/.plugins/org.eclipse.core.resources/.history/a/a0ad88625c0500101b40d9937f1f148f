@@ -1,0 +1,44 @@
+package com.example.demo.trading.service;
+
+public class TradingService {
+	@Service
+	@RequiredArgsConstructor
+	public class TradingService {
+	    private final UserRepository userRepository;
+	    private final StockRepository stockRepository;
+	    private final PortfolioRepository portfolioRepository;
+	    private final TransactionRepository transactionRepository;
+
+	    public String buyStock(BuyStockRequest request) {
+	        User user = userRepository.findById(request.getUserId()).orElseThrow();
+	        Stock stock = stockRepository.findById(request.getStockId()).orElseThrow();
+	        
+	        BigDecimal price = stock.getMinPrice().add(new BigDecimal(Math.random())
+	                .multiply(stock.getMaxPrice().subtract(stock.getMinPrice())));
+
+	        BigDecimal totalCost = price.multiply(new BigDecimal(request.getShares()));
+
+	        if (user.getBalance().compareTo(totalCost) < 0) {
+	            throw new InsufficientBalanceException("Not enough funds to buy stocks!");
+	        }
+
+	        user.setBalance(user.getBalance().subtract(totalCost));
+	        userRepository.save(user);
+
+	        Portfolio portfolio = portfolioRepository.findByUserAndStock(user, stock)
+	                .orElse(new Portfolio(null, user, stock, 0, BigDecimal.ZERO, BigDecimal.ZERO));
+
+	        portfolio.setShares(portfolio.getShares() + request.getShares());
+	        portfolio.setTotalValue(portfolio.getTotalValue().add(totalCost));
+	        portfolio.setAvgPrice(portfolio.getTotalValue().divide(new BigDecimal(portfolio.getShares()), 2, RoundingMode.HALF_UP));
+	        
+	        portfolioRepository.save(portfolio);
+
+	        Transaction transaction = new Transaction(null, user, stock, "BUY", request.getShares(), price, LocalDateTime.now());
+	        transactionRepository.save(transaction);
+
+	        return "Stock Purchased Successfully!";
+	    }
+	}
+
+}

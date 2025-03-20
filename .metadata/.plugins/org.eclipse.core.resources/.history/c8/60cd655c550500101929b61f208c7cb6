@@ -1,0 +1,48 @@
+package com.example.demo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.models.Stock;
+import com.example.demo.services.StockServices;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/stocks")
+public class StockController {
+
+    @Autowired
+    private StockServices stockService;
+
+    //add
+    @PostMapping("/add")
+    public Stock addStock(@RequestBody Stock stock) {
+        return stockService.addStock(stock);
+    }
+
+    //get all
+    @GetMapping("/all")
+    public List<Stock> getAllStocks() {
+        return stockService.getAllStocks();
+    }
+
+    //get by id
+    @GetMapping("/{id}")
+    public Optional<Stock> getStockById(@PathVariable int id) {
+        return stockService.getStockById(id);
+    }
+
+    //update
+    @PutMapping("/update/{id}")
+    public Stock updateStock(@PathVariable int id, @RequestBody Stock updatedStock) {
+            return stockService.updateStock(id, updatedStock);
+    }
+
+    //delete
+    @DeleteMapping("/delete/{id}")
+    public String deleteStock(@PathVariable int id) {
+        return stockService.deleteStock(id);
+    }
+}

@@ -1,0 +1,54 @@
+package com.example.demo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.models.Stock;
+import com.example.demo.services.StockServices;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/stocks")
+public class StockController {
+
+    @Autowired
+    private StockServices stockService;
+
+    //add
+    @PostMapping("/add")
+    public Stock addStock(@RequestBody Stock stock) {
+        return stockService.addStock(stock);
+    }
+
+    //get all
+    @GetMapping("/all")
+    public List<Stock> getAllStocks() {
+        return stockService.getAllStocks();
+    }
+
+    // Get stock by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getStockById(@PathVariable int id) {
+        Optional<Stock> stock = stockService.getStockById(id);
+        return stock.isPresent() ? ResponseEntity.ok(stock.get()) : ResponseEntity.badRequest().body("Stock not found");
+    }
+
+    // Update stock by ID
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateStock(@PathVariable int id, @RequestBody Stock updatedStock) {
+        try {
+            return ResponseEntity.ok(stockService.updateStock(id, updatedStock));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("Stock not found");
+        }
+    }
+
+    // Delete stock by ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteStock(@PathVariable int id) {
+        return ResponseEntity.ok(stockService.deleteStock(id));
+    }
+}

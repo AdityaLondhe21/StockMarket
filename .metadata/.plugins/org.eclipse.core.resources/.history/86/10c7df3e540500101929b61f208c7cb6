@@ -1,0 +1,71 @@
+package com.example.demo.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import com.example.demo.models.Stock;
+import com.example.demo.repos.StockRepository;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+@Service
+public class StockServices {
+
+    @Autowired
+    private StockRepository repo;
+
+    private final Random random = new Random();
+
+    //add stocks
+    public Stock addStock(Stock stock) {
+        return repo.save(stock);
+    }
+
+    //delete stocks
+    public String deleteStock(int id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return "Deleted Successfully";
+        } else {
+            return "Stock with id not found";
+        }
+    }
+
+    //update stocks
+    public Stock updateStock(int id, Stock updatedStock) {
+        return repo.findById(id).map(stock -> {
+            stock.setQuantity(updatedStock.getQuantity());
+            stock.setMin_price(updatedStock.getMin_price());
+            stock.setMax_price(updatedStock.getMax_price());
+            return repo.save(stock);
+        }).orElseThrow(() -> new RuntimeException("Stock not found"));
+    }
+    
+    //get all stocks
+    public List<Stock> getAllStocks() {
+        return repo.findAll();
+    }
+
+    //varying stocks
+    @Scheduled(fixedRate = 1000)
+    public void updateStockPrices() {
+        List<Stock> stocks = repo.findAll();
+        for (Stock stock : stocks) {
+            double minPrice = stock.getMin_price();
+            double maxPrice = stock.getMax_price();
+
+            double randomPrice = minPrice + (random.nextDouble() * (maxPrice - minPrice));
+
+            stock.setMin_price(randomPrice);
+            repo.save(stock);
+        }
+    }
+    
+    //login
+    
+    
+
+    
+    //get particular stock by id
+}

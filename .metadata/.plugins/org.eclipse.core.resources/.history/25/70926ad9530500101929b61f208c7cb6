@@ -1,0 +1,61 @@
+package com.example.demo.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import com.example.demo.models.Stock;
+import com.example.demo.repos.StockRepository;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+@Service
+public class StockServices {
+
+    @Autowired
+    private StockRepository repo;
+
+    private final Random random = new Random();
+
+    public Stock addStock(Stock stock) {
+        return repo.save(stock);
+    }
+
+    public String deleteStock(int id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return "Deleted Successfully";
+        } else {
+            return "Stock with id not found";
+        }
+    }
+
+    public Stock updateStock(int id, Stock updatedStock) {
+        return repo.findById(id).map(stock -> {
+            stock.setQuantity(updatedStock.getQuantity());
+            stock.setMin_price(updatedStock.getMin_price());
+            stock.setMax_price(updatedStock.getMax_price());
+            return repo.save(stock);
+        }).orElseThrow(() -> new RuntimeException("Stock not found"));
+    }
+
+    public List<Stock> getAllStocks() {
+        return repo.findAll();
+    }
+
+    // Scheduled method to update stock prices every second
+    @Scheduled(fixedRate = 1000) // 1000ms = 1 second
+    public void updateStockPrices() {
+        List<Stock> stocks = repo.findAll();
+        for (Stock stock : stocks) {
+            double minPrice = stock.getMin_price();
+            double maxPrice = stock.getMax_price();
+
+            // Generate a random price within the range (min_price to max_price)
+            double randomPrice = minPrice + (random.nextDouble() * (maxPrice - minPrice));
+
+            stock.setMin_price(randomPrice);
+            repo.save(stock);
+        }
+    }
+}
